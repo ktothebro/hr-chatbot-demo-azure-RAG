@@ -24,7 +24,7 @@
             "Content-Type": "application/json",
             // "x-api-key": "YOUR_KEY_HERE"   <-- if you secured it with API key
           },
-          body: JSON.stringify({ text: userMessage })
+          body: JSON.stringify({ userMessage: prompt })
         });
 
         const data = await response.json();
@@ -36,4 +36,5 @@
   </script>
 </body>
 </html>
+
 
