@@ -6,7 +6,33 @@
   <title>HR Chatbot Demo</title>
 </head>
 <body>
-  <h1>✅ Hello World!</h1>
-  <p>If you can see this, your GitHub Pages site is working.</p>
+  <h1>HR Chatbot Demo</h1>
+
+  <input type="text" id="userInput" placeholder="Type your question here" />
+  <button onclick="sendMessage()">Ask</button>
+
+  <p><strong>Response:</strong> <span id="responseText">...</span></p>
+
+  <script>
+    async function sendMessage() {
+      const userMessage = document.getElementById("userInput").value;
+
+      try {
+        const response = await fetch("YOUR_FLOW_URL_HERE", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // "x-api-key": "YOUR_KEY_HERE"   <-- if you secured it with API key
+          },
+          body: JSON.stringify({ text: userMessage })
+        });
+
+        const data = await response.json();
+        document.getElementById("responseText").innerText = JSON.stringify(data);
+      } catch (error) {
+        document.getElementById("responseText").innerText = "⚠️ Error: " + error;
+      }
+    }
+  </script>
 </body>
 </html>
